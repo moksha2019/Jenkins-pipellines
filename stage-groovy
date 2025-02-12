@@ -1,0 +1,45 @@
+pipeline {
+    agents any
+    stages {
+        stage("build"){
+            steps {
+                echo "hellow world!!"
+            }
+        }
+        stage("script phase"){
+            steps{
+                echo "******executing  the  script phase*****"
+                script{
+                    def course = docker & kubernetes
+                    if  ( course == docker & kubernetes){
+                        println ("welcome to $course")
+                    else
+                        println "Do learn $course"
+                    }
+                }
+            }
+        }
+        stage("error pahase"){
+            steps{
+                retry(3){
+                    echo "Entering the  error phase: "
+                    error "retrying the error block:"
+                }
+
+            }
+        }
+        stage("timeout pahse"){
+            steps{
+                timeout(time: 5 , unit: SECONDS){
+                    echo "Entering the timeout phase now"
+                    sleep 60
+                }
+            }
+        }
+        stage(){
+            steps{
+                
+            }
+        }
+    }
+}
