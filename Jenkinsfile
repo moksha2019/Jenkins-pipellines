@@ -1,14 +1,9 @@
 pipeline {
-  agents any
+  agent any
   stages {
-    stage ('Build') {
+    stage {
       steps {
-        echo "hello world !!!"
-      }
-      stage ('scanning phase') {
-        steps {
-          echo "Awesome welcome to jenkins pipelines  tutorial!!"
-        }
+        echo "hello world !!"
       }
     }
   }
