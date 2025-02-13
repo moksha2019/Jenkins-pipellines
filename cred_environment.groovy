@@ -4,7 +4,7 @@ pipeline{
     stages {
         stage ('testing the  creds'){
             environemnt{
-                GITHUB_CREDENTIALS = credentils('git_creds')
+                GITHUB_CREDENTIALS = credentials('git_creds')
             }
             steps{
                 echo "username  is : ${GITHUB_CREDENTIALS_USR}"
