@@ -1,0 +1,42 @@
+pipeline {
+    agent  any
+    stages {
+        stage ('build') {
+            steps {
+                echo "Building the  image: "
+            }
+        }
+        stage ('docker push') {
+            steps {
+                echo "Pushing the  image: "
+            }
+        }
+        stage ('deploying to dev') {
+            steps {
+                echo "Deploying the  image: "
+            }
+        }
+        stage ('deploying to stage') {
+            // only  the  brnaches having release  need  to be deployed to stage  environment
+            when {
+                barnch 'release/*'
+            }
+            steps {
+                echo "deploying to stage: "
+            }
+        }
+        stage ('deploying to test') {
+            steps {
+                echo "Deploying to  test  environemnt: "
+            }
+        }
+        stage ('deploying to prod') {
+            when {
+                // my tag format is v1.2.3
+                tag pattern: "v\\d{1.2}\\.\\d{1.2}\\.\\d{1.2}\\", comparator: "REGEXP"
+            }
+            steps {
+                echo "Deploying to production: "
+            }
+        }
+    }
