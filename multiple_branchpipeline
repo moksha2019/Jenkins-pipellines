@@ -33,7 +33,7 @@ pipeline {
         stage ('deploying to prod') {
             when {
                 // my tag format is v1.2.3
-                tag pattern: "v\\d{1.2}\\.\\d{1.2}\\.\\d{1.2}\\", comparator: "REGEXP"
+                tag pattern: "v\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}\\", comparator: "REGEXP"
             }
             steps {
                 echo "Deploying to production: "
